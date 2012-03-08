@@ -1,0 +1,11 @@
+.josm-remote a {
+  width: 88px;
+  z-index: 1;
+  position: absolute;
+  top: 65px;
+  left: 10px;
+}
+
+.josm-remote a.disabled {
+  display:none;
+}
