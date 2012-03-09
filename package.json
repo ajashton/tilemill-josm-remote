@@ -1,6 +1,6 @@
 {
     "name": "tilemill-josm-remote",
-    "description": "Open a JOSM editing session based on the current view in TileMill.",
+    "description": "Open a JOSM editing session covering the current map view.",
     "version": "0.0.1",
     "engines": {"tilemill":"0.9.x"},
     "keywords": ["tilemill"]
