@@ -12,7 +12,7 @@ view.prototype.initialize = _.wrap(view.prototype.initialize, function(func) {
     func.call(this);
     $("<div class='josm-remote'><a href='#' class='disabled button'>Edit in JOSM</a></div>").appendTo(this.map.parent);
     $('<iframe id="linkloader" style="display: none"></iframe>').appendTo(this.map.parent);
-    this.map.addCallback('zoomed', function(map) {
+    this.map.addCallback('drawn', function(map) {
         if (map.getZoom() > 13) {
             $('.josm-remote a').removeClass('disabled');
         } else {
