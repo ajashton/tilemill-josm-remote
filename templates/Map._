@@ -1,8 +1,0 @@
-<div id='map' class='fill'>
-  <div class='zoom-display'>Zoom <span class='zoom'></span></div>
-  <div class='josm-remote'><a href="#" class='disabled button'>Edit in JOSM</a></div>
-</div>
-
-<iframe id="linkloader" style="display: none">
-</iframe>
-
