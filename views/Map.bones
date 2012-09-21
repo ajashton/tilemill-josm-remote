@@ -1,31 +1,25 @@
 view = views.Map.extend();
 
-view.prototype.events = {
+view.prototype.events = _(view.prototype.events || {}).extend({
     'click .josm-remote a': 'josmRemote'
-};
+});
 
-view.prototype.initialize = function() {
+view.prototype.initialize = _.wrap(view.prototype.initialize, function(func) {
     _(this).bindAll(
-        'render',
-        'attach',
         'mapZoom',
-        'fullscreen',
         'josmRemote'
     );
-    this.model.bind('saved', this.attach);
-    this.model.bind('poll', this.attach);
-    this.render().attach();
-};
-
-// Set zoom display.
-view.prototype.mapZoom = function(e) {
-    this.$('.zoom-display .zoom').text(this.map.getZoom());
-    if (this.map.getZoom() > 13) {
-        $('.josm-remote a').removeClass('disabled');
-    } else {
-        $('.josm-remote a').addClass('disabled');
-    }
-};
+    func.call(this);
+    $("<div class='josm-remote'><a href='#' class='disabled button'>Edit in JOSM</a></div>").appendTo(this.map.parent);
+    $('<iframe id="linkloader" style="display: none"></iframe>').appendTo(this.map.parent);
+    this.map.addCallback('zoomed', function(map) {
+        if (map.getZoom() > 13) {
+            $('.josm-remote a').removeClass('disabled');
+        } else {
+            $('.josm-remote a').addClass('disabled');
+        }
+    });
+});
 
 view.prototype.josmRemote = function(e) {
     var extent = this.map.getExtent();
