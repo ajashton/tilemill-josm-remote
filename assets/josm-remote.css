@@ -7,5 +7,5 @@
 }
 
 .josm-remote a.disabled {
-  display:none;
+  pointer-events: none;
 }
